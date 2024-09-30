@@ -31,7 +31,7 @@ class _MyAppState extends State<MyApp> {
               ),
             ),
           ),
-          backgroundColor:  Color.fromARGB(255, 114, 96, 234),
+          backgroundColor:  Color.fromARGB(255, 35, 147, 159),
         ),
         drawer: Drawer(
           backgroundColor:  Color(0xFFBDBDBD)
@@ -96,7 +96,7 @@ class _MyAppState extends State<MyApp> {
         width: 370,
         height: 100,
         decoration: BoxDecoration(
-          color: Color.fromARGB(255, 70, 83, 226)  ,
+          color: Color.fromARGB(255, 35, 147, 159)  ,
 
           borderRadius: BorderRadius.circular(10),
         ),
