@@ -31,8 +31,16 @@ class _MyAppState extends State<MyApp> {
               ),
             ),
           ),
-          backgroundColor: const Color.fromARGB(222, 121, 80, 217),
+          backgroundColor:  Color.fromARGB(255, 114, 96, 234),
         ),
+        drawer: Drawer(
+          backgroundColor:  Color(0xFFBDBDBD)
+
+,
+        ),
+        backgroundColor: Color(0xFFBDBDBD)
+
+,
         body: SingleChildScrollView(
           child:Column(
           children: [
@@ -88,7 +96,8 @@ class _MyAppState extends State<MyApp> {
         width: 370,
         height: 100,
         decoration: BoxDecoration(
-          color: const Color.fromARGB(222, 121, 80, 217),
+          color: Color.fromARGB(255, 70, 83, 226)  ,
+
           borderRadius: BorderRadius.circular(10),
         ),
         child: Column(
