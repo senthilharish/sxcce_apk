@@ -5,10 +5,16 @@ void main() {
   runApp(const MyApp());
 }
 
-String a = '9787303208'; // Changed to String
-
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  String a = ''; // Changed to String
+  final _textcontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -27,25 +33,51 @@ class MyApp extends StatelessWidget {
           ),
           backgroundColor: const Color.fromARGB(222, 121, 80, 217),
         ),
-        body: Column(
+        body: SingleChildScrollView(
+          child:Column(
           children: [
-            SizedBox(height: 15),
+            SizedBox(height: 27,),
+            TextField(
+              controller: _textcontroller,
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: "Enter the phone number",),
+                  
+            ),
+            MaterialButton(
+              onPressed: () {
+                setState(() {
+                  a = _textcontroller.text; // Updating the string
+                });
+              },
+              color: Colors.blueGrey,
+              child: const Text("click"),
+            ),
+            SizedBox(height: 20),
             main("student dashboard",
                 'https://www.sxcce.edu.in/mobile/studview.php?ph=$a'),
+                SizedBox(height: 20),
             main("attendance details",
                 'https://www.sxcce.edu.in/mobile/absent.php?ph=$a'),
+                SizedBox(height: 20),
             main("Discipline details",
                 'https://www.sxcce.edu.in/mobile/discipline.php?ph=$a'),
+                SizedBox(height: 20),
             main("event details",
                 'https://www.sxcce.edu.in/mobile/events.php?ph=$a'),
+                SizedBox(height: 20),
             main("Fees details",
                 'https://www.sxcce.edu.in/mobile/fees.php?ph=$a'),
+                SizedBox(height: 20),
             main("internal mark",
                 'https://www.sxcce.edu.in/mobile/imarks.php?ph=$a'),
+                SizedBox(height: 20),
             main("end sem mark",
                 'https://www.sxcce.edu.in/mobile/emarks.php?ph=$a'),
+                SizedBox(height: 20),
           ],
         ),
+        )
       ),
     );
   }
