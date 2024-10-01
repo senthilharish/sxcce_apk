@@ -55,7 +55,7 @@ class _MyAppState extends State<MyApp> {
             MaterialButton(
               onPressed: () {
                 setState(() {
-                  a = _textcontroller.text; // Updating the string
+                  a = _textcontroller.text.trim(); // Updating the string
                 });
               },
               color: Colors.blueGrey,
