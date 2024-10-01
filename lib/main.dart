@@ -33,14 +33,6 @@ class _MyAppState extends State<MyApp> {
           ),
           backgroundColor:  Color.fromARGB(255, 35, 147, 159),
         ),
-        drawer: Drawer(
-          backgroundColor:  Color(0xFFBDBDBD)
-
-,
-        ),
-        backgroundColor: Color(0xFFBDBDBD)
-
-,
         body: SingleChildScrollView(
           child:Column(
           children: [
