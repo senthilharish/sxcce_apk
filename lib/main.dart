@@ -42,7 +42,7 @@ class _MyAppState extends State<MyApp> {
               decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: "Enter the phone number",),
-                  
+                  keyboardType:TextInputType.number,
             ),
             MaterialButton(
               onPressed: () {
