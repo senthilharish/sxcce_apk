@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sxcce_apk/drawer.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -14,8 +15,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String a = ''; 
-  final _textcontroller = TextEditingController();
+  String phoneNumber='';
 
   @override
   void initState() {
@@ -23,19 +23,17 @@ class _MyAppState extends State<MyApp> {
     _loadPhoneNumber();
   }
 
-  // Load saved phone number from local storage
   Future<void> _loadPhoneNumber() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
-      a = prefs.getString('phone_number') ?? '';
-      _textcontroller.text = a; // Display saved number in TextField
+      phoneNumber = prefs.getString('phone_number') ?? '';
     });
   }
 
-  // Save phone number to local storage
-  Future<void> _savePhoneNumber(String number) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('phone_number', number);
+  void _updatePhoneNumber(String newNumber) {
+    setState(() {
+      phoneNumber = newNumber;
+    });
   }
 
   @override
@@ -43,60 +41,46 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        drawer: Drawer(
+          child: Drawer01(onPhoneNumberSaved: _updatePhoneNumber), // Pass callback to Drawer01
+        ),
         appBar: AppBar(
           title: const Center(
             child: Text(
-              "sxcce student app",
+              "SXCCE APP",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 28,
+                fontSize: 25,
               ),
             ),
           ),
-          backgroundColor: const Color.fromARGB(255, 35, 147, 159),
+          backgroundColor:Colors.blueGrey,
         ),
         body: SingleChildScrollView(
           child: Column(
             children: [
               const SizedBox(height: 27),
-              TextField(
-                controller: _textcontroller,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: "Enter the phone number",
-                ),
-              ),
-              MaterialButton(
-                onPressed: () {
-                  setState(() {
-                    a = _textcontroller.text.trim();
-                  });
-                  _savePhoneNumber(a); // Save number to local storage
-                },
-                color: Colors.blueGrey,
-                child: const Text("Save"),
-              ),
               const SizedBox(height: 20),
-              main("student Dashboard",
-                  'https://www.sxcce.edu.in/mobile/studview.php?ph=$a'),
+              main("Student Details",
+                  'https://www.sxcce.edu.in/mobile/studview.php?ph=$phoneNumber'),
               const SizedBox(height: 20),
               main("Attendance Details",
-                  'https://www.sxcce.edu.in/mobile/absent.php?ph=$a'),
+                  'https://www.sxcce.edu.in/mobile/absent.php?ph=$phoneNumber'),
               const SizedBox(height: 20),
-              main("Disciplinary details",
-                  'https://www.sxcce.edu.in/mobile/discipline.php?ph=$a'),
+              main("Disciplinary Details",
+                  'https://www.sxcce.edu.in/mobile/discipline.php?ph=$phoneNumber'),
               const SizedBox(height: 20),
               main("Event Details",
-                  'https://www.sxcce.edu.in/mobile/events.php?ph=$a'),
+                  'https://www.sxcce.edu.in/mobile/events.php?ph=$phoneNumber'),
               const SizedBox(height: 20),
               main("Fees Details",
-                  'https://www.sxcce.edu.in/mobile/fees.php?ph=$a'),
+                  'https://www.sxcce.edu.in/mobile/fees.php?ph=$phoneNumber'),
               const SizedBox(height: 20),
               main("Internal Mark",
-                  'https://www.sxcce.edu.in/mobile/imarks.php?ph=$a'),
+                  'https://www.sxcce.edu.in/mobile/imarks.php?ph=$phoneNumber'),
               const SizedBox(height: 20),
               main("End Sem Mark",
-                  'https://www.sxcce.edu.in/mobile/emarks.php?ph=$a'),
+                  'https://www.sxcce.edu.in/mobile/emarks.php?ph=$phoneNumber'),
               const SizedBox(height: 20),
             ],
           ),
@@ -108,10 +92,10 @@ class _MyAppState extends State<MyApp> {
   Center main(String title, String link) {
     return Center(
       child: Container(
-        width: 370,
+        width: 330,
         height: 100,
         decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 35, 147, 159),
+          color: Colors.blueGrey ,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Column(
